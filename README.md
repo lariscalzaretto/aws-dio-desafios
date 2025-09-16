@@ -101,3 +101,56 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: "meu-bucket-exemplo-cloudformation"
+```
+
+## Desafio 03
+# Automatizando Infraestrutura com AWS CloudFormation
+Aqui registro minhas anotações, aprendizados e um exemplo prático de template.
+
+---
+
+## 📌 O que aprendi
+
+### O que é CloudFormation
+AWS CloudFormation é o serviço da AWS que permite **criar, atualizar e gerenciar recursos de infraestrutura** usando arquivos declarativos em **YAML** ou **JSON**. É um dos pilares de **Infrastructure as Code (IaC)**, permitindo automatizar ambientes sem necessidade de configuração manual.
+
+### Benefícios
+- **Automação**: cria recursos sem cliques manuais no console.  
+- **Padronização**: mantém ambientes consistentes.  
+- **Escalabilidade**: provisiona múltiplos recursos de uma vez.  
+- **Versionamento**: templates podem ser versionados no GitHub.  
+
+---
+
+## ⚙️ Estrutura de Templates
+Um template em CloudFormation geralmente possui:
+- **AWSTemplateFormatVersion** → versão do formato.  
+- **Description** → descrição do que o template faz.  
+- **Parameters** → valores que podem ser passados dinamicamente.  
+- **Resources** → serviços AWS que serão criados.  
+- **Outputs** → informações de retorno após a criação da Stack.  
+
+---
+
+## 🛠️ Experiência Prática
+Durante a prática do desafio:
+1. Entendi como acessar o serviço **CloudFormation** no console.  
+2. Criei uma **Stack** usando um template simples em YAML.  
+3. Validei logs e eventos durante a criação.  
+4. Testei o ciclo de vida completo: criação, atualização e deleção da Stack.  
+
+### Exemplo de Template
+Um template simples para provisionar um bucket S3:
+
+```yaml
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Exemplo de Stack simples no CloudFormation"
+
+Resources:
+  MeuPrimeiroBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: "bucket-exemplo-cloudformation-lari"
+
+```
+
