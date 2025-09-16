@@ -54,7 +54,7 @@ Exemplo simplificado de workflow:
 }
 
 ```
-##Desafio 02
+## Desafio 02
 # Implementando minha Primeira Stack com AWS CloudFormation
 
 Repositório criado como parte do desafio da DIO para consolidar conhecimentos em **AWS CloudFormation**.  
