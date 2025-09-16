@@ -57,9 +57,6 @@ Exemplo simplificado de workflow:
 ## Desafio 02
 # Implementando minha Primeira Stack com AWS CloudFormation
 
-Repositório criado como parte do desafio da DIO para consolidar conhecimentos em **AWS CloudFormation**.  
-O objetivo é registrar práticas e aprendizados ao criar e gerenciar Stacks automatizadas.
-
 ---
 
 ## 📌 O que aprendi
@@ -151,6 +148,52 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: "bucket-exemplo-cloudformation-lari"
+
+```
+## Desafio 04
+# Automatizando Infraestrutura com AWS CloudFormation
+
+## 📌 O que aprendi
+
+### 🔹 Amazon S3
+O S3 é um serviço de armazenamento de objetos altamente escalável.  
+Ele permite salvar arquivos (imagens, documentos, logs etc.) que podem ser processados de forma automática ao gerar eventos.
+
+### 🔹 AWS Lambda
+O Lambda é um serviço serverless que executa código sob demanda.  
+Ele elimina a necessidade de gerenciar servidores e pode ser disparado por eventos, como o upload de arquivos em um bucket S3.
+
+### 🔹 Integração S3 + Lambda
+A integração funciona assim:
+1. Um arquivo é enviado ao bucket S3.  
+2. Esse evento dispara a execução da Lambda Function configurada.  
+3. A função pode processar o arquivo (validar, transformar, mover, registrar em um banco como DynamoDB).  
+
+---
+
+## ⚙️ Experiência prática
+
+Durante a prática, implementei:
+- Um bucket S3 configurado para **disparar eventos de upload**.  
+- Uma Lambda Function simples em Python para processar o arquivo.  
+- Registro de informações (como nome e data do arquivo) em um destino simulado (ex.: DynamoDB ou log).  
+
+### Exemplo de Lambda Function (Python)
+
+```python
+import json
+
+def lambda_handler(event, context):
+    # Pega o nome do arquivo enviado
+    arquivo = event['Records'][0]['s3']['object']['key']
+    bucket = event['Records'][0]['s3']['bucket']['name']
+
+    print(f"Novo arquivo recebido: {arquivo} no bucket {bucket}")
+
+    return {
+        'statusCode': 200,
+        'body': json.dumps(f"Arquivo {arquivo} processado com sucesso!")
+    }
 
 ```
 
